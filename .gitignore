@@ -1,0 +1,34 @@
+# macOS files
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Lockfiles (optional to ignore)
+package-lock.json
+yarn.lock
+
+# OS / Editor
+Thumbs.db
+.vscode/
+.idea/
+
+# Python virtual envs / caches
+.env
+.venv/
+__pycache__/
+*.py[cod]
+
+# Caches and coverage
+.cache/
+.sass-cache/
+coverage/
+
+# Secrets
+*.pem
+*.key
+
+

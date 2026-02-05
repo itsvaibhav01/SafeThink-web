@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away</title>
+  <meta name="description" content="SafeThink: Safety recovery in reasoning models is often only a few early steering steps away." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Academicons (for arXiv / paper-style icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+
+<body>
+  <!-- Top nav -->
+  <header class="topnav">
+    <div class="container topnav__inner">
+      <a class="logo" href="#top" aria-label="SafeThink home">
+        <span class="logo__mark">Safe</span><span class="logo__mark logo__mark--alt">Think</span>
+      </a>
+
+      <nav class="topnav__links" aria-label="Page navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#algorithm">Algorithm</a>
+        <a href="#citation">BibTeX</a>
+      </nav>
+
+      <!-- <div class="topnav__actions">
+      </div> -->
+    </div>
+  </header>
+
+  <main id="top" class="page">
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero__center">
+        <h1 class="hero__title">Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away</h1>
+
+        <p class="hero__authors">
+          <a href="https://scholar.google.com/citations?user=zE8aFIwAAAAJ&hl=en" target="_blank" rel="noreferrer">Soumya Suvra Ghosa</a><sup>1</sup>,
+          <a href="https://scholar.google.co.in/citations?user=pvETm1wAAAAJ&hl=en" target="_blank" rel="noreferrer">Souradip Chakroborty</a><sup>1</sup>,
+          <a href="https://scholar.google.com/citations?user=5tdH2eEAAAAJ&hl=en" target="_blank" rel="noreferrer">Vaibhav Singh</a><sup>2</sup>,
+          <a href="https://scholar.google.com/citations?user=13yyuCcAAAAJ&hl=en" target="_blank" rel="noreferrer">Furong Huang</a><sup>1</sup>,
+          <a href="https://scholar.google.com/citations?user=X08l_4IAAAAJ&hl=en" target="_blank" rel="noreferrer">Dinesh Manocha</a><sup>1</sup>,
+          <a href="https://scholar.google.com/citations?user=91WLA6QAAAAJ&hl=en" target="_blank" rel="noreferrer">Amrit Singh Bedi</a><sup>3</sup>
+        </p>
+
+        <p class="hero__affils">
+          <span><sup>1</sup>University of Maryland, College Park</span>
+          <span class="dot">·</span>
+          <span><sup>2</sup>Indian Institute of Technology, Bombay</span>
+          <span class="dot">·</span>
+          <span><sup>3</sup>University of Central Florida</span>
+          <span class="dot">·</span>
+        </p>
+
+        <div class="pill-row">
+          <a class="pill pill--paper" href="static/images/paper.pdf" target="_blank" rel="noreferrer"
+             style="background-color:black;color:#fff;border-color:#6b7280">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            Paper
+          </a>
+          <a class="pill pill--arxiv" href="https://arxiv.org/" target="_blank" rel="noreferrer"
+             style="background-color:black;color:#fff;border-color:#6b7280">
+            <span class="icon"><i class="ai ai-arxiv"></i></span>
+            arXiv
+          </a>
+          <a class="pill pill--code" href="https://github.com/" target="_blank" rel="noreferrer"
+             style="background-color:black;color:#fff;border-color:#6b7280">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            Code
+          </a>
+          <a class="pill pill--cite" href="#citation"
+             style="background-color:black;color:#fff;border-color:#6b7280">
+            <span class="icon"><i class="ai ai-open-access"></i></span>
+            Cite
+          </a>
+        </div>
+
+        <p class="hero__subtitle">
+          <b>SafeThink</b> is an inference-time safety defense: monitor step-by-step safety, trigger only on violations,
+          and steer minimally — often within the <b>first 1–3 reasoning steps</b>.
+        </p>
+      </div>
+
+      <!-- Big Figure 1 (rounded, white mat so it doesn't clash) -->
+      <figure class="hero-figure" aria-label="Figure 1 overview">
+        <div class="hero-figure__mat">
+          <img src="static/images/fig1_overview.png" alt="Figure 1: SafeThink overview" />
+        </div>
+        <figcaption class="hero-figure__cap">(Left) SafeThink monitors the reasoning trace and adds a tiny safety steer only when needed—usually fixing safety in the first few steps. 
+          <br> (Right) Reasoning fine-tuning boosts accuracy but hurts safety (higher ASR); SafeThink restores safety at inference-time without losing reasoning.</figcaption>
+      </figure>
+
+      <!-- More interesting blocks -->
+      <section class="info-blocks" aria-label="Problem and impact">
+        <div class="info-card info-card--accent">
+          <div class="info-card__title">Problem we solve</div>
+          <p class="info-card__lead">
+            Reasoning boosts capability — but can also <b>increase jailbreak vulnerability</b>.
+          </p>
+          <div class="callout">
+            <div class="callout__k">Pain point</div>
+            <div class="callout__v">Safety drops during intermediate reasoning steps.</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__title">Key idea</div>
+          <p class="info-card__lead">
+            <b>Satisficing safety:</b> meet a safety threshold, then stop intervening.
+          </p>
+          <div class="mini-steps">
+            <div class="mini-step"><span>1</span><div><b>Monitor</b><div>score step safety</div></div></div>
+            <div class="mini-step"><span>2</span><div><b>Trigger</b><div>only on violations</div></div></div>
+            <div class="mini-step"><span>3</span><div><b>Steer</b><div>few early steps</div></div></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card__title">Why it matters</div>
+          <ul class="info-list">
+            <li><b>No retraining</b> — deploy at inference-time.</li>
+            <li><b>Minimal changes</b> — short steering prefix, early only.</li>
+            <li><b>Preserve utility</b> — avoid blunt truncation / refusal spam.</li>
+          </ul>
+          <div class="callout callout--soft">
+            <div class="callout__k">Takeaway</div>
+            <div class="callout__v">Safety recovery is often “a few early steps away”.</div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Abstract -->
+    <section id="abstract" class="section container">
+      <h2>Abstract</h2>
+      <div class="card prose">
+        <p>
+          Paste your abstract here. Keep it readable (6–10 lines). The goal is: a random visitor understands the problem,
+          your key idea, and the main claim quickly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Method -->
+    <section id="method" class="section container">
+      <h2>Method</h2>
+      <p class="muted center">Explain it in 15 seconds. Then offer details.</p>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>SafeThink in three steps</h3>
+          <ol class="steps">
+            <li><span>1</span><div><b>Monitor</b><div>Score partial reasoning with a safety reward model.</div></div></li>
+            <li><span>2</span><div><b>Trigger</b><div>Intervene only if safety drops below threshold τ.</div></div></li>
+            <li><span>3</span><div><b>Steer</b><div>Inject a short prefix and resample safely (often early only).</div></div></li>
+          </ol>
+
+          <div class="codebox">
+<pre><code>// Pseudocode (simplified)
+for step t:
+  if R_safe(trace) &lt; τ and t ≤ m:
+    trace += steer_prefix
+    resample_next_step()
+return answer</code></pre>
+          </div>
+        </div>
+
+        <div class="card">
+          <figure class="figure figure--framed" data-fig="method">
+            <div class="media-frame">
+              <img src="static/images/fig1_overview.png" alt="Method overview" />
+            </div>
+            <figcaption>Method overview (swap with your clean schematic if different).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="section container">
+      <h2>Results</h2>
+      <p class="muted center">Dataset tabs (Figures 5–7), followed by fixed MathVista utility.</p>
+
+      <div class="card results-card">
+        <div class="tabs" role="tablist" aria-label="Dataset results">
+          <button class="tab active rtab" data-tab="r1" role="tab">JailbreakV (Fig. 5)</button>
+          <button class="tab rtab" data-tab="r2" role="tab">Hades (Fig. 6)</button>
+          <button class="tab rtab" data-tab="r3" role="tab">FigStep (Fig. 7)</button>
+        </div>
+
+        <div class="tabpane active rtabpane" id="r1" role="tabpanel">
+          <figure class="figure figure--framed" data-fig="r-jb">
+            <div class="media-frame">
+              <img src="static/images/fig5_jailbreakv.png" alt="Figure 5: JailbreakV results" />
+            </div>
+            <figcaption>Figure 5: Results on JailbreakV.</figcaption>
+          </figure>
+        </div>
+
+        <div class="tabpane rtabpane" id="r2" role="tabpanel">
+          <figure class="figure figure--framed" data-fig="r-hades">
+            <div class="media-frame">
+              <img src="static/images/fig6_hades.png" alt="Figure 6: Hades results" />
+            </div>
+            <figcaption>Figure 6: Results on Hades.</figcaption>
+          </figure>
+        </div>
+
+        <div class="tabpane rtabpane" id="r3" role="tabpanel">
+          <figure class="figure figure--framed" data-fig="r-figstep">
+            <div class="media-frame">
+              <img src="static/images/fig7_figstep.png" alt="Figure 7: FigStep results" />
+            </div>
+            <figcaption>Figure 7: Results on FigStep.</figcaption>
+          </figure>
+        </div>
+
+        <hr class="sep" />
+
+        <h3 class="subhead">Utility (MathVista)</h3>
+        <figure class="figure figure--framed" data-fig="mathvista">
+          <div class="media-frame">
+            <img src="static/images/fig_mathvista.png" alt="MathVista utility results" />
+          </div>
+          <figcaption>MathVista: utility preservation (replace caption text to match paper).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Algorithm -->
+    <section id="algorithm" class="section container">
+      <h2>Algorithm</h2>
+      <div class="card">
+        <p class="muted">Replace the pseudocode with your official algorithm figure later (or keep it as code).</p>
+        <div class="codebox">
+<pre><code>Inputs: model π, safety scorer R_safe, threshold τ, early budget m
+for t in 1..T:
+  step ~ π(· | trace)
+  if t ≤ m and R_safe(trace + step) &lt; τ:
+    step ~ π(· | trace, "Wait, think safely")
+  trace += step
+return final answer</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section id="citation" class="section container">
+      <h2>BibTeX</h2>
+
+      <div class="card bib-card">
+        <div class="bib-head">
+          <span class="muted">Copy and paste:</span>
+          <button class="btn btn--ghost bib-copy" id="copyBib" type="button">
+            <span class="icon"><i class="ai ai-copy"></i></span>
+            Copy
+          </button>
+        </div>
+
+        <pre class="codeblock" id="bibtex"><code>@inproceedings{safethink2026,
+  title     = {Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away},
+  author    = {Author A and Author B and Author C and Author D},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer container">
+      <p class="muted center">Simple HTML/CSS/JS · GitHub Pages friendly · Clean academic style</p>
+    </footer>
+  </main>
+
+  <script src="static/js/script.js"></script>
+</body>
+</html>
