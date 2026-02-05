@@ -51,7 +51,7 @@ body{
 
 /* Logo wordmark */
 .logo{
-  font-weight: 950;
+  font-weight: 900;
   letter-spacing: -0.03em;
   text-decoration: none;
   color: var(--text);
@@ -172,7 +172,7 @@ body{
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
   color: var(--text);
   text-decoration: none;
-  font-weight: 850;
+  font-weight: 800;
   font-size: 13px;
 }
 .pill:hover{ transform: translateY(-1px); }
@@ -220,27 +220,46 @@ body{
   .info-blocks{ grid-template-columns: 1fr; }
 }
 
+/* Make the title look like a mini navbar/header inside the card */
 .info-card{
+  overflow: hidden;          /* so the header bar respects rounded corners */
+  padding-top: 0;            /* header will provide its own padding */
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 16px;
-  background: rgba(255,255,255,0.72);
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
-  padding: 14px;
+  /* background: rgba(255,255,255,0.72); */
+  /* box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05); */
 }
-.info-card--accent{
-  border-color: rgba(31,138,112,0.22);
-  box-shadow: 0 14px 30px rgba(31,138,112,0.10);
-}
+
+/* Header bar style */
 .info-card__title{
-  font-weight: 950;
+  display: block;
+  margin: 0 0 10px 0;
+  padding: 10px 14px;
+
+  background: rgba(241,239,232,0.92);              /* same family as topnav */
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+
+  font-weight: 900;
   font-size: 14px;
   letter-spacing: -0.01em;
-  margin-bottom: 6px;
 }
-.info-card__lead{
-  margin: 0;
-  color: var(--muted);
+
+/* Put padding back for the content below the title */
+.info-card__lead,
+.info-list,
+.callout,
+.mini-steps{
+  padding: 0 14px;
 }
+
+.info-card__lead{ margin-top: 6px; }
+
+/* Accent card: slightly different header tint to match theme */
+.info-card--accent .info-card__title{
+  background: rgba(31,138,112,0.10);
+  border-bottom-color: rgba(31,138,112,0.18);
+}
+
 
 .callout{
   margin-top: 10px;
@@ -252,6 +271,10 @@ body{
 .callout--soft{
   background: rgba(31,138,112,0.08);
   border-color: rgba(31,138,112,0.18);
+}
+.callout--hard{
+  background: rgba(138, 52, 31, 0.08);
+  border-color: rgba(138, 52, 31, 0.18);
 }
 .callout__k{
   font-size: 11px;
@@ -294,7 +317,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 950;
+  font-weight: 900;
   flex: 0 0 auto;
 }
 .mini-step b{ font-weight: 900; }
@@ -308,13 +331,14 @@ body{
   background: rgba(255,255,255,0.72);
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
   padding: 16px;
+  min-width: 10px;
 }
 
 .section{ margin-top: 26px; padding-top: 6px; }
 .section h2{
   text-align: center;
   margin: 0 0 12px;
-  font-size: 18px;
+  font-size: 28px;
   letter-spacing: -0.01em;
 }
 
@@ -354,7 +378,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 950;
+  font-weight: 900;
   flex: 0 0 auto;
 }
 
@@ -362,10 +386,61 @@ body{
 .codebox{
   margin-top: 12px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.10);
-  background: #fbfaf7;
-  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #ffffff; /* plain white to match site background */
+  color: var(--text);
+  padding: 12px 14px;
   overflow: auto;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  -moz-tab-size: 2;
+  tab-size: 2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.codebox pre,
+.codebox code{
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  white-space: pre;
+}
+
+/* optional language label if you add data-lang attribute to the container */
+.codebox[data-lang]::before{
+  content: attr(data-lang);
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.03);
+  padding: 4px 8px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* optional copy button styling if you include a button inside */
+.codebox .copy-btn{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
 }
 pre{ margin: 0; }
 code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
@@ -380,7 +455,7 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
 
 .figure--framed .media-frame{
   width: 100%;
-  height: 420px;
+  height: 340px;
   border-radius: 14px;
   border: 1px solid rgba(0,0,0,0.10);
   background: #fff;
@@ -414,18 +489,25 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
 }
 .tab{
   border: 1px solid rgba(0,0,0,0.10);
-  background: rgba(255,255,255,0.60);
+  background: rgba(241,239,232,0.85); /* slightly warm, more visible than pure white */
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
   font-weight: 900;
-  font-size: 12px;
+  font-size: 16px;
   color: var(--muted);
+  transition: background .18s ease, color .18s ease, transform .12s ease, box-shadow .18s ease;
+}
+.tab:hover{
+  transform: translateY(-1px);
+  background: rgba(31,138,112,0.06);
+  color: var(--text);
 }
 .tab.active{
-  color: var(--text);
-  border-color: rgba(31,138,112,0.35);
-  box-shadow: 0 0 0 4px rgba(31,138,112,0.10);
+  color: #fff;
+  background: var(--accent2);
+  border-color: var(--accent2);
+  box-shadow: 0 8px 24px rgba(31,138,112,0.18);
 }
 .tabpane{ display: none; }
 .tabpane.active{ display: block; }
@@ -439,7 +521,7 @@ code{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liber
 .subhead{
   margin: 0 0 10px 0;
   font-size: 14px;
-  font-weight: 950;
+  font-weight: 900;
   letter-spacing: -0.01em;
 }
 
