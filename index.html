@@ -3,12 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away</title>
+  <title>SafeThink</title>
   <meta name="description" content="SafeThink: Safety recovery in reasoning models is often only a few early steering steps away." />
+  <!-- Meta tags for SEO -->
+  <link rel="canonical" href="https://arxiv.org/abs/2602.11096" />
+  <meta name="keywords" content="SafeThink, reasoning models, safety alignment, jailbreak defense, inference-time steering, safety reward model, chain-of-thought, multimodal LLMs, GRPO, JailbreakV-28K, Hades, FigStep, MM-SafetyBench, MathVista" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large" />
 
+  <meta name="author" content="Soumya Suvra Ghosal; Souradip Chakraborty; Vaibhav Singh; Furong Huang; Dinesh Manocha; Amrit Singh Bedi" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away" />
+  <meta property="og:description" content="SafeThink steers the first 1-3 reasoning steps to recover safety in multimodal reasoning models, cutting jailbreak success rates while preserving reasoning performance." />
+  <meta property="og:url" content="https://arxiv.org/abs/2602.11096" />
+  <meta property="og:image" content="https://itsvaibhav01.github.io/SafeThink-web/static/images/fig1_overview.png" />
+  <meta property="og:site_name" content="SafeThink Paper" />
+  <meta property="article:published_time" content="2026-02-11T18:09:17Z" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away" />
+  <meta name="twitter:description"
+        content="SafeThink: inference-time safety recovery via early reasoning-step steering for multimodal reasoning models." />
+  <meta name="twitter:image" content="https://itsvaibhav01.github.io/SafeThink-web/static/images/fig1_overview.png" />
+
+  <!-- Scholar-friendly citation tags -->
+  <meta name="citation_title" content="Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away" />
+  <meta name="citation_author" content="Soumya Suvra Ghosal" />
+  <meta name="citation_author" content="Souradip Chakraborty" />
+  <meta name="citation_author" content="Vaibhav Singh" />
+  <meta name="citation_author" content="Furong Huang" />
+  <meta name="citation_author" content="Dinesh Manocha" />
+  <meta name="citation_author" content="Amrit Singh Bedi" />
+  <meta name="citation_publication_date" content="2026/02/11" />
+  <meta name="citation_arxiv_id" content="2602.11096" />
+  <meta name="citation_doi" content="10.48550/arXiv.2602.11096" />
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2602.11096" />
+  <meta name="citation_abstract_html_url" content="https://arxiv.org/abs/2602.11096" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGD3L6GPK9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CGD3L6GPK9');
+  </script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- logo -->
+  <link rel="icon" href="./static/images/favicon.svg">
 
   <!-- Academicons (for arXiv / paper-style icons) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -62,12 +111,12 @@
         </p>
 
         <div class="pill-row">
-          <a class="pill pill--paper" href="static/images/paper.pdf" target="_blank" rel="noreferrer"
+          <a class="pill pill--paper" href="https://arxiv.org/pdf/2602.11096" target="_blank" rel="noreferrer"
              style="background-color:black;color:#fff;border-color:#6b7280">
             <span class="icon"><i class="fas fa-file-pdf"></i></span>
             Paper
           </a>
-          <a class="pill pill--arxiv" href="https://arxiv.org/" target="_blank" rel="noreferrer"
+          <a class="pill pill--arxiv" href="https://arxiv.org/abs/2602.11096" target="_blank" rel="noreferrer"
              style="background-color:black;color:#fff;border-color:#6b7280">
             <span class="icon"><i class="ai ai-arxiv"></i></span>
             arXiv
@@ -77,7 +126,7 @@
             <span class="icon"><i class="fab fa-github"></i></span>
             Code
           </a>
-          <a class="pill pill--cite" href="#citation"
+          <a class="pill pill--cite" href="./static/transcreation.bib" download="safethink.bib" target="_blank" rel="noreferrer"
              style="background-color:black;color:#fff;border-color:#6b7280">
             <span class="icon"><i class="ai ai-open-access"></i></span>
             Cite
